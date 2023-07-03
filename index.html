@@ -1,16 +1,36 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Button Example</title>
-  <script>
-    function myFunction() {
-      window.webkit.messageHandlers.IOSWebAppBridge.postMessage("hello, how are you?");
-      // Perform additional JavaScript actions here
-    }
-  </script>
+    <title>Button Example</title>
+    <script>
+        function myFunction() {
+            const jsonObject = {
+                topic: 'sell-to-mudah',
+                event: 'Sell-to-Mudah-Form-Submission',
+                values: [
+                    {
+                        key:"brand",
+                        value:"Proton"
+                    },
+                    {
+                        key: "Manufacture_Year",
+                        value:2011
+                    }
+                ]
+            };
+
+            const jsonString = JSON.stringify(jsonObject);
+            console.log(jsonString);
+
+            window.webkit.messageHandlers.IOSWebAppBridge.postMessage(jsonString);
+        }
+    </script>
 </head>
+
 <body>
-  <h1>Button Example</h1>
-  <button onclick="myFunction()">Tap Me</button>
+    <h1>Button Example</h1>
+    <button onclick="myFunction()">Tap Me</button>
 </body>
+
 </html>
